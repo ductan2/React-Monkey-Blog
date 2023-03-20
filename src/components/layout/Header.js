@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { useAuth } from '../../context/auth-context';
 import { Button } from '../button/Button';
 const HeaderStyle = styled.div`
     .header-main {
@@ -52,6 +53,8 @@ const menuLink = [
     { title: 'Contact', link: '/contact' }
 ];
 export const Header = () => {
+    const { userInfo } = useAuth();
+    console.log("🚀  ~  Header ~  userInfo:", userInfo)
     return (
         <HeaderStyle>
             <div className="container">
@@ -109,11 +112,20 @@ export const Header = () => {
                             </div>
                         </div>
                         <div className="header-btn">
-                            <Button
-                                style={{ maxWidth: '200px', height: '56px' }}
-                            >
-                                Sign Up
-                            </Button>
+                            {userInfo?.email ? (
+                                <span>{userInfo.displayName}</span>
+                            ) : (
+                                <Button
+                                    style={{
+                                        maxWidth: '200px',
+                                        height: '56px'
+                                    }}
+                                    type={'button'}
+                                    linkTo={'/sign-up'}
+                                >
+                                    Sign Up
+                                </Button>
+                            )}
                         </div>
                     </div>
                 </div>

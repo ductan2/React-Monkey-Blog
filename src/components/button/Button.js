@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Loading } from '../loading/Loading';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 const ButtonStyles = styled.button`
     padding: 0 25px;
     font-size: 18px;
@@ -29,6 +30,7 @@ export const Button = ({
     type = 'button',
     children,
     isLoading,
+    linkTo,
     onClick = () => {},
     ...props
 }) => {
@@ -40,7 +42,9 @@ export const Button = ({
             onClick={onClick}
             {...props}
         >
-            {child}
+          {linkTo ? <NavLink to={linkTo}>{child}</NavLink>:child} 
+          {/* {child}  */}
+           {/*WARNING:  */}
         </ButtonStyles>
     );
 };

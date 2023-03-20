@@ -39,7 +39,6 @@ export const SignInpage = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const notifyError = Object.values(errors);
-        console.log(notifyError);
         if (notifyError.length > 0) {
             // error
             toast.error(notifyError[0]?.message, {
@@ -99,7 +98,7 @@ export const SignInpage = () => {
                     </Input>
                 </div>
                 <AccountLinkStyle >
-                    You have not had an account{' '}
+                    You have not had an account
                     <Link to={'/sign-up'}>
                         <span>Register an account</span>
                     </Link>

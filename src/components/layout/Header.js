@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../../context/auth-context';
 import { Button } from '../button/Button';
-const HeaderStyle = styled.div`
+const HeaderStyle = styled.header`
     .header-main {
         display: flex;
         align-items: center;

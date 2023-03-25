@@ -14,6 +14,7 @@ import { IconEyeClose } from '../components/icon/IconEyeClose';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { InputPasswordToggle } from './InputPasswordToggle';
 const schema = Yup.object({
     email: Yup.string().email().required('Email is invalid !'),
     password: Yup.string()
@@ -52,14 +53,11 @@ export const SignInpage = () => {
     const { userInfo } = useAuth();
     useEffect(() => {
         if (userInfo?.email) {
-            console.log('has acc');
             navigate('/');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    console.log(userInfo);
     const handleSignIn = async (values) => {
-        console.log(values);
         if (!isValid) return;
         await signInWithEmailAndPassword(auth, values.email, values.password);
         navigate('/');
@@ -78,24 +76,7 @@ export const SignInpage = () => {
                 </div>
                 <div className="field">
                     <Label htmlFor="password">Password</Label>
-                    <Input
-                        type={`${togglePassword ? 'password' : 'text'}`}
-                        name="password"
-                        placeholder="Enter your password"
-                        control={control}
-                    >
-                        {togglePassword ? (
-                            <IconEyeClose
-                                className="input-icon"
-                                onClick={() => setTogglePassword(false)}
-                            ></IconEyeClose>
-                        ) : (
-                            <IconEyeOpen
-                                className="input-icon"
-                                onClick={() => setTogglePassword(true)}
-                            ></IconEyeOpen>
-                        )}
-                    </Input>
+                   <InputPasswordToggle control={control}></InputPasswordToggle>
                 </div>
                 <AccountLinkStyle >
                     You have not had an account
@@ -106,7 +87,7 @@ export const SignInpage = () => {
                 <Button
                     type="submit"
                     isLoading={isSubmitting}
-                    style={{ margin: '0 auto', maxWidth: '300px' }}
+                    className="w-full mx-auto max-w-[300px]"
                 >
                     Sign In
                 </Button>

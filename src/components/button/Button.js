@@ -31,6 +31,7 @@ export const Button = ({
     children,
     isLoading,
     linkTo,
+    className,
     onClick = () => {},
     ...props
 }) => {
@@ -41,10 +42,11 @@ export const Button = ({
             type={type}
             onClick={onClick}
             {...props}
+            className={className}
         >
-          {linkTo ? <NavLink to={linkTo}>{child}</NavLink>:child} 
-          {/* {child}  */}
-           {/*WARNING:  */}
+            {linkTo ? <NavLink to={linkTo}>{child}</NavLink> : child}
+            {/* {child}  */}
+            {/*WARNING:  */}
         </ButtonStyles>
     );
 };
@@ -52,5 +54,5 @@ Button.propTypes = {
     type: PropTypes.oneOf(['button', 'submit']).isRequired,
     isLoading: PropTypes.bool,
     children: PropTypes.node,
-    onClick:PropTypes.func
+    onClick: PropTypes.func
 };

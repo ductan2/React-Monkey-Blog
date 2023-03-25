@@ -15,6 +15,7 @@ export const HomePages = () => {
     return (
         <HomePagesStyles>
             <Layout>
+            
                 <Banner></Banner>
                 <HomeFeature></HomeFeature>
                 <HomeNewest></HomeNewest>

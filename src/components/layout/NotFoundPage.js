@@ -24,7 +24,7 @@ export const NotFoundPage = () => {
     return (
         <NotFoundStyles>
             <div className="notfound-img">
-                <img src="./logo2x.png" alt="" />
+                <img src="./logo1x5.png" alt="" />
             </div>
             <div className="notfound-heading">
                 <h1>OOPS! Page not found </h1>

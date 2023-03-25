@@ -12,11 +12,13 @@ const HeaderStyle = styled.header`
     .header-logo {
         display: block;
         max-width: 50px;
+        margin-right: 30px;
     }
     .header-menu {
         display: flex;
         align-items: center;
         gap: 25px;
+
         li {
             font-size: 18px;
             line-height: 27px;

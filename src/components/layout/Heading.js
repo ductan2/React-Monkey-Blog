@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 const HeadingStyles = styled.h2`
-  /* color: ${(props) => props.theme.tertiary}; */
+  color: ${(props) => props.theme.tertiary};
   font-size: 28px;
   position: relative;
-  margin-bottom: 30px;
+  margin: 30px 0;
   font-family: "Montserrat", sans-serif;
   &:before {
     content: "";

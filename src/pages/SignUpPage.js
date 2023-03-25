@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Label } from '../components/label/Label';
 import { Input } from '../components/input/Input';
 import { useForm } from 'react-hook-form';
-import { IconEyeClose } from '../components/icon/IconEyeClose';
-import { IconEyeOpen } from '../components/icon/IconEyeOpen';
 import { Button } from '../components/button/Button';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,6 +13,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
 import { AuthSignPage } from './AuthSignPage';
+import { InputPasswordToggle } from './InputPasswordToggle';
 
 const schema = Yup.object({
     fullname: Yup.string().required('Full name is invalid !'),
@@ -44,7 +43,6 @@ const SignUpPage = (props) => {
 
         resolver: yupResolver(schema)
     });
-    const [togglePassword, setTogglePassword] = useState(true);
     const handleSignUp = async (values) => {
         if (!isValid) return;
         const user = await createUserWithEmailAndPassword(
@@ -60,7 +58,7 @@ const SignUpPage = (props) => {
             password: values.password
         });
         toast.success('Email is create successfully');
-        // navigate('/')
+        // navigate('/sign-in')
     };
 
     useEffect(() => {
@@ -101,24 +99,9 @@ const SignUpPage = (props) => {
                 </div>
                 <div className="field">
                     <Label htmlFor="password">Password</Label>
-                    <Input
-                        type={`${togglePassword ? 'password' : 'text'}`}
-                        name="password"
-                        placeholder="Enter your password"
+                    <InputPasswordToggle
                         control={control}
-                    >
-                        {togglePassword ? (
-                            <IconEyeClose
-                                className="input-icon"
-                                onClick={() => setTogglePassword(false)}
-                            ></IconEyeClose>
-                        ) : (
-                            <IconEyeOpen
-                                className="input-icon"
-                                onClick={() => setTogglePassword(true)}
-                            ></IconEyeOpen>
-                        )}
-                    </Input>
+                    ></InputPasswordToggle>
                 </div>
                 <AccountLinkStyle>
                     You already have an account
@@ -129,7 +112,7 @@ const SignUpPage = (props) => {
                 <Button
                     type="submit"
                     isLoading={isSubmitting}
-                    style={{ margin: '0 auto', maxWidth: '300px' }}
+                    className="mx-auto w-full max-w-[300px]"
                 >
                     Sign Up
                 </Button>

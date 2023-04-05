@@ -1,5 +1,7 @@
-import React from 'react';
+import { collection, doc } from 'firebase/firestore';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { db } from '../../../firebase/firebase-config';
 import PostCategory from './PostCategory';
 import { PostImage } from './PostImage';
 import { PostMeta } from './PostMeta';
@@ -51,6 +53,8 @@ const PostNewestItemStyles = styled.div`
     }
 `;
 const PostNewestItem = () => {
+    
+
     return (
         <PostNewestItemStyles>
             {/* <div className="post-image">
@@ -65,7 +69,6 @@ const PostNewestItem = () => {
                 }
             ></PostImage>
             <div className="post-content">
-                <PostCategory type="secondary">Kiến thức</PostCategory>
                 <PostTitle></PostTitle>
                 <PostTitle>
                     Hướng dẫn setup phòng cực chill dành cho người mới toàn tập

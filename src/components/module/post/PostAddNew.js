@@ -52,11 +52,14 @@ const PostAddNew = () => {
             lower: true
         }); // link
         cloneValues.status = Number(values.status);
-
+        console.log("values" ,values);
         const colRef = collection(db, 'posts'); // create storage posts
+        console.log("id",userInfo.uid)
         await addDoc(colRef, {
             ...cloneValues,
-            image
+            image,
+            userId:userInfo.uid,
+            auth:userInfo.displayName,
         });
         toast.success('create new post successfully');
         reset({
@@ -93,14 +96,14 @@ const PostAddNew = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-x-10 mb-10">
-                    <Field>
+                    {/* <Field>
                         <Label>Author</Label>
                         <Input
                             control={control}
                             name="auth"
                             placeholder="Find the author"
                         ></Input>
-                    </Field>
+                    </Field> */}
                     <Field>
                         <Label>Status</Label>
                         <div className="flex items-center gap-x-5">

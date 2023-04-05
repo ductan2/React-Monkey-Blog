@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Label } from '../components/label/Label';
 import { Input } from '../components/input/Input';
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import { auth } from '../firebase/firebase-config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebase-config';
 import { AuthSignPage } from './AuthSignPage';
 import { InputPasswordToggle } from './InputPasswordToggle';
@@ -32,6 +32,7 @@ const AccountLinkStyle = styled.div`
     }
 `;
 const SignUpPage = (props) => {
+    const navigate=useNavigate();
     const {
         control,
         handleSubmit,
@@ -51,14 +52,14 @@ const SignUpPage = (props) => {
             values.password
         );
         await updateProfile(auth.currentUser, { displayName: values.fullname });
-        const colRef = collection(db, 'users');
-        await addDoc(colRef, {
+        // const colRef = collection(db, 'users');
+        await setDoc(doc(db, 'users', auth.currentUser.uid), {
             userName: values.fullname,
             email: values.email,
             password: values.password
         });
         toast.success('Email is create successfully');
-        // navigate('/sign-in')
+        navigate('/sign-in')
     };
 
     useEffect(() => {

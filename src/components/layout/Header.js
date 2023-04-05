@@ -56,7 +56,6 @@ const menuLink = [
 ];
 export const Header = () => {
     const { userInfo } = useAuth();
-    console.log("🚀  ~  Header ~  userInfo:", userInfo)
     return (
         <HeaderStyle>
             <div className="container">

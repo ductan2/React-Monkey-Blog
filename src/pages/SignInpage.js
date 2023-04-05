@@ -36,7 +36,7 @@ export const SignInpage = () => {
         control,
         formState: { isValid, isSubmitting, errors }
     } = useForm({ resolver: yupResolver(schema) });
-    const [togglePassword, setTogglePassword] = useState(true);
+    // const [togglePassword, setTogglePassword] = useState(true);
     const navigate = useNavigate();
     useEffect(() => {
         const notifyError = Object.values(errors);
@@ -81,7 +81,7 @@ export const SignInpage = () => {
                 <AccountLinkStyle >
                     You have not had an account
                     <Link to={'/sign-up'}>
-                        <span>Register an account</span>
+                        <span> Register an account</span>
                     </Link>
                 </AccountLinkStyle>
                 <Button

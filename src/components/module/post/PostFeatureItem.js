@@ -1,5 +1,7 @@
-import React from 'react';
+import { doc } from 'firebase/firestore';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { db } from '../../../firebase/firebase-config';
 import PostCategory from './PostCategory';
 import { PostImage } from './PostImage';
 import { PostMeta } from './PostMeta';
@@ -71,7 +73,10 @@ const PostFeatureItemStyles = styled.div`
         height: 272px;
     }
 `;
-const PostFeatureItem = () => {
+const PostFeatureItem = ({data}) => {
+    
+    if(!data || !data.id) return ;
+  
     return (
         <PostFeatureItemStyles>
             {/* <img
@@ -80,19 +85,17 @@ const PostFeatureItem = () => {
                 className="post-image"
             /> */}
             <PostImage
-                src={
-                    'https://images.unsplash.com/photo-1614624532983-4ce03382d63d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2662&q=80'
-                }
+                src={data.image}
                 alt={"unsplash"}
             ></PostImage>
             <div className="post-overlay"></div>
             <div className="post-content">
                 <div className="post-top">
-                    <PostCategory>Kiến thức</PostCategory>
-                    <PostMeta></PostMeta>
+                    =
+                    <PostMeta auth={data.auth}></PostMeta>
                 </div>
                 <PostTitle size="big">
-                    Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
+                    {data.title}
                 </PostTitle>
             </div>
         </PostFeatureItemStyles>

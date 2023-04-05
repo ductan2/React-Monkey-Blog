@@ -69,7 +69,6 @@ export default function useImageFireBase(setValue, getValues) {
     const handleChangeImage = (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        console.log('hihihaha');
         const storage = getStorage(); // get storage
         // Upload file and metadata to the object 'images/mountains.jpg'
         const storageRef = ref(storage, 'images/' + file.name);
